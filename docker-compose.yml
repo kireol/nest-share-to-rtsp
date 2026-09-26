@@ -1,0 +1,12 @@
+services:
+  go2rtc:
+    image: alexxit/go2rtc:latest
+    container_name: nest2rtsp
+    restart: unless-stopped
+    ports:
+      - "${RTSP_PORT:-8564}:8554"   # RTSP
+      - "${WEB_PORT:-1994}:1984"   # go2rtc web UI / API
+    environment:
+      - NEST_TOKEN=${NEST_TOKEN}
+    volumes:
+      - ./config:/config

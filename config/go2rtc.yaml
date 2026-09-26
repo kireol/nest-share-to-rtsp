@@ -1,0 +1,12 @@
+streams:
+  # nest.sh looks up the current HLS URL on every (re)start, so host/uuid changes are handled.
+  nest: exec:/config/nest.sh ${NEST_TOKEN} {output}
+
+rtsp:
+  listen: ":8554"
+
+api:
+  listen: ":1984"
+
+log:
+  exec: info
