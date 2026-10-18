@@ -3,6 +3,10 @@ services:
     image: alexxit/go2rtc:latest
     container_name: nest2rtsp
     restart: unless-stopped
+    # Docker Desktop's embedded resolver times out on AAAA for video.nest.com, and musl
+    # fails the whole lookup on that; the router answers both.
+    dns:
+      - 192.168.1.1
     ports:
       - "${RTSP_PORT:-8564}:8554"   # RTSP
       - "${WEB_PORT:-1994}:1984"   # go2rtc web UI / API
